@@ -1,0 +1,124 @@
+body {
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f6fa;
+}
+
+/* AUTH PAGES */
+.auth-container {
+  display: flex;
+  height:100vh;
+}
+
+.auth-left {
+  flex:1;
+  background: linear-gradient(135deg,#4b00ff,#7a00ff);
+  color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-right {
+  flex:1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+}
+
+.auth-right input {
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+/* BUTTON */
+.primary-btn {
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  background: linear-gradient(135deg, #6a00ff, #9d00ff);
+  color: white;
+  border-radius: 6px;
+  cursor:pointer;
+}
+
+/* DASHBOARD */
+.dashboard-container {
+  display:flex;
+  height:100vh;
+}
+
+.sidebar {
+  width:220px;
+  background: linear-gradient(135deg, #1a0033, #4b00ff);
+  color: white;
+  padding: 20px;
+}
+
+.sidebar ul{
+  list-style:none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin:15px 0;
+  cursor: pointer;
+}
+
+.sidebar .active {
+  font-weight: bold;
+}
+
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+.topbar {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+.card select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* OUTPUT */
+.output-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.success {
+  background: #d4edda;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: #155724;
+}
+
+.output-text {
+  margin-top: 15px;
+}
+
+/* LINKS */
+.link {
+  margin-top: 10px;
+  color: #6a00ff;
+  cursor: pointer;
+}

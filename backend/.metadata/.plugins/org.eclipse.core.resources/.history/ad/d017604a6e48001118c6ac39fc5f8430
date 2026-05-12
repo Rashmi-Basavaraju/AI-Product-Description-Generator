@@ -1,0 +1,12 @@
+package com.example.productai.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.productai.model.ProductDataset;
+
+public interface ProductDatasetRepository extends JpaRepository<ProductDataset, Long> {
+	List<ProductDataset> findByItemNameContaining(String name);
+
+}

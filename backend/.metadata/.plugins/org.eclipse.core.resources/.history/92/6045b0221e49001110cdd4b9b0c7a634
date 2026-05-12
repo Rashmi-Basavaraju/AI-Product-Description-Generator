@@ -1,0 +1,25 @@
+package com.example.productai.model;
+
+
+public class ProductRequest 
+{
+   private String itemName;
+   private String description;
+   
+//   Getters & Setters
+   public String getItemName() {
+	return itemName;
+}
+   public void setItemName(String itemName) {
+	this.itemName = itemName;
+   }
+   public String getDescription() {
+	return description;
+   }
+   public void setDescription(String description) {
+	this.description = description;
+   }
+   
+
+   
+}

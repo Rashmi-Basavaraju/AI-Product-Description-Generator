@@ -1,0 +1,11 @@
+#server.port=8080
+
+
+spring.application.name=product-description-generator
+
+spring.datasource.url=jdbc:mysql://localhost:3306/productai
+spring.datasource.username=root
+spring.datasource.password=Rashmi@20122003
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true

@@ -1,0 +1,22 @@
+package com.example.productai.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "ecom_product_data")
+public class ProductDataset 
+{
+	@Id
+	@Column(name="item_id")
+	private Long itemId;
+	
+	private String marketplace;
+	private String country;
+	
+	@Column(name="main_image_id")
+	private String
+
+}

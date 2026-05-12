@@ -1,0 +1,49 @@
+package com.example.productai.controller;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.productai.model.User;
+import com.example.productai.repository.UserRepository;
+import com.example.productai.service.AuthService;
+
+@RestController
+@RequestMapping("/auth")
+@CrossOrigin(origins="http://localhost:5173")
+
+public class AuthController 
+{
+  @Autowired
+  private AuthService service;
+  
+  @Autowired
+  private UserRepository userRepository;
+  
+  @PostMapping("/signup")
+  public String signup(@RequestBody User user) {
+	  return service.signup(user);
+  }
+  
+//  @PostMapping("/login")
+//  public String login(@RequestBody User user) {
+//	  return service.login(user);
+//  }
+  
+  @PostMapping("/login")
+  public User login(@RequestBody User user) {
+	 Optional< User> u =userRepository.findByUsernameAndPassword (
+			  user.getUsername(),
+			  user.getPassword()
+	);
+	  if (u==null) {
+		  throw new RuntimeException("Invalid credentails");
+	  }
+	  return u.get();
+  }
+}

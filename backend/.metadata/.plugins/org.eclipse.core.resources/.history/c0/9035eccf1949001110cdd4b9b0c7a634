@@ -1,0 +1,134 @@
+package com.example.productai.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.productai.model.GenerateFromDatasetRequest;
+import com.example.productai.model.Product;
+import com.example.productai.model.ProductDataset;
+import com.example.productai.model.ProductRequest;
+import com.example.productai.model.ProductResponse;
+import com.example.productai.repository.ProductDatasetRepository;
+import com.example.productai.repository.ProductRepository;
+import com.example.productai.service.AIService;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins="http://localhost:5173")
+
+public class ProductController 
+{
+   @Autowired
+   private AIService service;
+   
+   @Autowired
+   private ProductRepository repo;
+   
+   @Autowired
+   private ProductDatasetRepository datasetRepo;
+   
+   
+   
+   
+   @PostMapping("/generate")
+   public ProductResponse generate(@RequestBody ProductRequest request) {
+	   
+	   if (request.getItemName() == null || request.getItemName().isEmpty()) {
+	        throw new RuntimeException("Product name is required");
+	    }
+
+	    if (request.getDescription() == null || request.getDescription().isEmpty()) {
+	        throw new RuntimeException("Features are required");
+	    }
+	   
+	   String result = service.generateDescription(
+			       request.getItemName(),
+			       request.getDescription()
+			   );
+	   
+	   Product product = new Product();
+	    product.setName(request.getItemName());
+	    product.setFeatures(request.getDescription());
+	    product.setDescription(result);
+ 
+	    product.setCreatedAt(java.time.LocalDateTime.now());
+
+	    repo.save(product); 
+	   
+	   return new ProductResponse(result);
+	   
+   }
+   
+//   @GetMapping("/products")
+//   public List<Product> getAll(){
+//	   return repo.findAll();
+//   }
+   
+   
+   
+   @PostMapping("/generate-from-dataset")
+   public ProductResponse generateFromDataset(@RequestBody GenerateFromDatasetRequest request) {
+	   ProductDataset product = datasetRepo.findById(request.getItemId()).orElseThrow(()-> new RuntimeException("Product not found"));
+       
+	   String result = service.generateDescription(
+	            product.getItemName(),
+	            product.getDescription()   
+	    );
+        
+	   Product newProduct = new Product();
+	    newProduct.setName(product.getItemName());
+	    newProduct.setFeatures(product.getDescription());
+	    newProduct.setDescription(result);
+	    
+	    newProduct.setCreatedAt(java.time.LocalDateTime.now());
+	    
+	    repo.save(newProduct);
+	    
+	    
+	    return new ProductResponse(result);
+	}
+   
+   @GetMapping("/search")
+   public List<Product> search(@RequestParam String name){
+	   return repo.findByNameContaining(name);
+   }
+   
+   @GetMapping("/products")
+ public List<Product> getAll(){
+	   return repo.findAll();
+ }
+   
+   @GetMapping("/products/{username}")
+   public List<Product> getUserProducts(@PathVariable String username){
+	   return repo.findAll();
+	   
+   }
+   
+   @DeleteMapping("/delete/{id}")
+   public String delete(@PathVariable Long id) {
+	   repo.deleteById(id);
+	   return "Deleted";
+   }
+   
+   @GetMapping("/dataset")
+   public List<ProductDataset> getAllDataset()
+   {
+	   return datasetRepo.findAll();
+   }
+   
+   @GetMapping("/dataset/search")
+   public List<ProductDataset> searchDataset(@RequestParam String name)
+   {
+	   return datasetRepo.findByItemNameContaining(name);
+   }
+}

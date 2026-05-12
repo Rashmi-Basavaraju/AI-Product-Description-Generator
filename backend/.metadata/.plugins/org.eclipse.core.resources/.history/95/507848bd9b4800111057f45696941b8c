@@ -1,0 +1,5 @@
+package com.example.productai.config;
+
+public class CorsConfig {
+
+}

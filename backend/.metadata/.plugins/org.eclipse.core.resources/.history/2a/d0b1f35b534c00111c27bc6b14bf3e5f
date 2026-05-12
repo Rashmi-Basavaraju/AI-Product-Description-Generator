@@ -1,0 +1,87 @@
+package com.example.productai.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.productai.model.Product;
+import com.example.productai.repository.GeneratedHistoryRepository;
+import com.example.productai.repository.ProductRepository;
+
+@Service
+public class AIService 
+{
+  @Autowired
+  private ProductRepository repo;
+  
+  @Autowired
+  private GeneratedHistoryRepository historyRepository;
+  
+  public String generateDescription(String name, String features, String productName, String tone) 
+  {
+	  if(name == null || name.isEmpty()) {
+		  name = "Product";
+	  }
+	  
+	  if(features == null || features.isEmpty()) {
+		  features = "Premium Quality";
+	  }
+	  
+	  if(tone == null || tone.isEmpty()) {
+		  tone = "professional";
+	  }
+	  
+	  String description = buildDescription(name, features, tone);
+	  
+//	  String description ="This is Description for " + name + " with features: " + features;
+	  
+//	  Save to DB
+	  Product p = new Product();
+	  p.setName(name);
+	  p.setFeatures(features);
+	  p.setDescription(description);
+	  
+	  
+	  try {
+          p.setTone(tone);
+      } catch (Exception e) {
+          // ignore if field not added yet
+      }
+
+      try {
+          p.setCreatedAt(LocalDateTime.now());
+      } catch (Exception e) {
+          // ignore if field not added yet
+      }
+	  
+	  repo.save(p);
+	  
+	  return description;
+  }
+  
+  private String buildDescription(
+          String name,
+          String features,
+          String tone
+  ) {
+
+      String intro = "";
+      String ending = "";
+
+      switch (tone.toLowerCase()) {
+
+          case "professional":
+        	  intro =
+              "Experience premium performance with the all-new "
+                      + name + ". ";
+
+      ending =
+              "Designed for reliability, efficiency, and modern usability.";
+
+      break;
+
+  case "luxury":
+      intro =
+              "Introducing the luxurious "
+                      + name
+                      + " crafted for elegance and sophistication. ";
+}

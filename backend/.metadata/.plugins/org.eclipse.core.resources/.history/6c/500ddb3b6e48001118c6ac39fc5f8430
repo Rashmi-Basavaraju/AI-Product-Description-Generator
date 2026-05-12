@@ -1,0 +1,71 @@
+package com.example.productai.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "product_data")
+public class ProductDataset 
+{
+	@Id
+	@Column(name="item_id")
+	private String itemId;
+	
+	@Column(name = "item_name")
+	private String itemName;
+	
+	private String brand;
+	
+	@Column(name = "product_type")
+	private String productType;
+	
+	@Column(name = "bullet_point")
+	private String description;
+	
+//	Getters & Setters
+
+	public Long getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getProductType() {
+		return productType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
+
+}

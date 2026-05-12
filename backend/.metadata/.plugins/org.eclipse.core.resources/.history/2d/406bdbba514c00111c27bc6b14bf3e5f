@@ -1,0 +1,29 @@
+package com.example.productai.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.productai.model.Product;
+import com.example.productai.repository.ProductRepository;
+
+@Service
+public class AIService 
+{
+  @Autowired
+  private ProductRepository repo;
+  
+  public String generateDescription(String name, String features) 
+  {
+	  String description ="This is Description for " + name + " with features: " + features;
+	  
+//	  Save to DB
+	  Product p = new Product();
+	  p.setName(name);
+	  p.setFeatures(features);
+	  p.setDescription(description);
+	  
+	  repo.save(p);
+	  
+	  return description;
+  }
+}

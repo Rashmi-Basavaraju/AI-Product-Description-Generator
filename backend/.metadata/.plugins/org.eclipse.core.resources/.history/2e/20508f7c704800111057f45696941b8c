@@ -1,0 +1,11 @@
+package com.example.productai.model;
+
+
+public class ProductRequest 
+{
+   private String itemName;
+   private String description;
+   
+//   Getters & Setters
+   
+}
