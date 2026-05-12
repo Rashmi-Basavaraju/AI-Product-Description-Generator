@@ -105,19 +105,16 @@ npm run dev
 > Add screenshots here:
 
 * Login Page
-<img width="1920" height="865" alt="Login" src="https://github.com/user-attachments/assets/11811327-d6c2-4fd4-8524-502afd59c292" />
-
+<img width="1920" height="865" alt="Login" src="https://github.com/user-attachments/assets/3bee0e72-76ad-496d-95cc-0ad6d8e8ef38" />
 
 * Dashboard
-<img width="1920" height="875" alt="Dashboard" src="https://github.com/user-attachments/assets/474bf5f2-13b0-40ba-abcc-42056d1be766" />
-
+<img width="1920" height="875" alt="Dashboard" src="https://github.com/user-attachments/assets/7e1d6b1f-b054-4db7-8d7f-4e8e305c3810" />
 
 * Output Page
-<img width="1920" height="897" alt="output" src="https://github.com/user-attachments/assets/4d993e83-44ab-4503-84bf-1a5a487e5c35" />
-
+<img width="1920" height="897" alt="output" src="https://github.com/user-attachments/assets/90fe0df5-d7fc-4cd2-b8c2-f6d118a6e376" />
 
 * My Products
-<img width="1920" height="874" alt="Product" src="https://github.com/user-attachments/assets/16db51c2-a959-4a08-b916-820080adc4dd" />
+<img width="1920" height="874" alt="Product" src="https://github.com/user-attachments/assets/7918101f-6aed-4fcc-84db-263c87371f69" />
 
 ## 📊 Results
 
